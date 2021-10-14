@@ -7,6 +7,9 @@
     "development": "NODE_ENV=development DEBUG=fikmat-api-test-app:* nodemon app.js"
   },
   "dependencies": {
+    "browserify-middleware": "^8",
+    "coffeeify": "^3",
+    "coffeescript": "^2",
     "express": "^4.17",
     "pug": "^3.0.2",
     "socket.io": "^4.2.0"

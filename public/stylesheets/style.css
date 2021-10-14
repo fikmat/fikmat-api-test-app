@@ -2,4 +2,41 @@ body {
   padding: 0;
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: black
+}
+
+.f-container {
+  margin: 50px auto 0 auto;
+  width: 120px;
+}
+
+.f-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.f-screen {
+  background: blue;
+  height: 50px;
+  margin: 10px 20px 0 20px;
+}
+
+.f-led {
+  color: white;
+}
+
+#f-led__top {
+  text-align: center;
+}
+
+#f-led__left {
+  margin-top: 8px;
+  float: left;
+}
+
+#f-led__right {
+  position: relative;
+  margin-top: 8px;
+  float: right;
 }
