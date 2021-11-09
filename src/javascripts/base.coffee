@@ -1,9 +1,14 @@
-safeColorFromString = (string) ->
-  return "rba(0, 0, 0)" if typeof string != 'string'
+LED_MAPPING = {
+  led_right: "#f-led-right",
+  led_left: "#f-led-left",
+}
+LED_STRIP_LENGTH = 50
 
-  colors = string.split(',')
-  length = colors.length
-  colors = colors.map (color) ->
+safeColorFromString = (rgb_array) ->
+  return "rba(0, 0, 0)" if typeof rgb_array == 'string'
+
+  length = rgb_array.length
+  colors = rgb_array.map (color) ->
     c = parseInt(color, 10) || 0
     if color > 255
       c = 255
@@ -18,11 +23,20 @@ safeColorFromString = (string) ->
 
   "rgb(#{colors.slice(0, 3).join(', ')})"
 
-LED_MAPPING = {
-  led_top: "#f-led__top",
-  led_right: "#f-led__right",
-  led_left: "#f-led__left",
-}
+mapRange = (value, low1, high1, low2, high2) ->
+  low2 + (high2 - low2) * (value - low1) / (high1 - low1)
+
+updateLedStripColors = (selector, colors) ->
+  return if colors.length == 0
+
+  diodes = $("#{selector} .f-led__diode")
+
+  for color, i in colors
+    newPos = Math.floor(mapRange(i, 0, colors.length, 0, LED_STRIP_LENGTH))
+
+    for j in [0...LED_STRIP_LENGTH / colors.length]
+      c = safeColorFromString(color)
+      $(diodes[newPos + j]).css("color", c)
 
 $ ->
   socket = io()
@@ -34,8 +48,4 @@ $ ->
 
     for key, selector of LED_MAPPING
       if params[key]
-        color = safeColorFromString(params[key])
-
-        console.log "#{key} -> #{color}"
-
-        $(selector).css("color", color)
+        updateLedStripColors(selector, params[key])
