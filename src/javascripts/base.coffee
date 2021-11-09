@@ -38,6 +38,23 @@ updateLedStripColors = (selector, colors) ->
       c = safeColorFromString(color)
       $(diodes[newPos + j]).css("color", c)
 
+motorStopTimer = null
+vibrate = (power) ->
+  clearTimeout(motorStopTimer)
+
+  power = Math.min(Math.max(power, 0), 99)
+
+  if power == 0
+    $('.f-vibrate').text("")
+  else
+    r = Math.ceil(power / 15)
+    string = "#{"(".repeat(r)} vibrating #{")".repeat(r)} <br>#{power}"
+    $('.f-vibrate').html(string)
+
+    motorStopTimer = setTimeout ->
+      $('.f-vibrate').text("")
+    , 150
+
 $ ->
   socket = io()
 
@@ -49,3 +66,6 @@ $ ->
     for key, selector of LED_MAPPING
       if params[key]
         updateLedStripColors(selector, params[key])
+
+    if params["vibrate"] != undefined
+      vibrate(params["vibrate"])
