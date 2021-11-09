@@ -2,7 +2,7 @@
 
 This app should help you develop your Fikmat game, you can test controlling components via Fikmat API on your local machine.
 
-- download & run the executable
+- [download](https://github.com/fikmatt/fikmat-api-test-app/releases) & run the executable
 - go to [localhost:8020](http://localhost:8020)
 - test with curl, web page should react to your request
 ```
