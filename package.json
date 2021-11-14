@@ -19,7 +19,7 @@
     "nodemon": "^2.0.13"
   },
   "pkg": {
-    "assets": "public/**/*",
+    "assets":  [ "public/**/*", "views/*" ],
     "outputPath": "dist"
   }
 }

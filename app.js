@@ -2,6 +2,7 @@ const express = require('express');
 const browserify = require('browserify-middleware');
 const coffeeify = require('coffeeify');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const http = require('http');
@@ -14,11 +15,15 @@ const io = new Server(server);
 require('pug');
 
 app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 browserify.settings('transform', coffeeify);
-app.get('/javascripts/base.js', browserify('./src/javascripts/base.coffee'));
+
+app.get('/javascripts/base.js', browserify(path.join(__dirname, 'src/javascripts/base.coffee')));
 
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(express.json());
 
 const jsonErrorHandler = (err, req, res, next) => {
