@@ -67,5 +67,5 @@ $ ->
       if params[key]
         updateLedStripColors(selector, params[key])
 
-    if params["vibrate"] != undefined
-      vibrate(params["vibrate"])
+    # if params["vibrate"] != undefined
+    #   vibrate(params["vibrate"])

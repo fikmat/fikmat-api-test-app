@@ -7,8 +7,7 @@ This app should help you develop your Fikmat game, you can test controlling comp
 - test with curl, web page should react to your request
 ```
 curl -d "{ \"led_left\": [[255,0,0],[0,255,0],[0,0,255]],
-           \"led_right\": [[255,0,0],[0,255,0],[0,0,255]],
-           \"vibrate\": 99 }" \
+           \"led_right\": [[255,0,0],[0,255,0],[0,0,255]] }" \
      -H "Content-Type: application/json" \
      -X POST http://localhost:8020/api
 ```
