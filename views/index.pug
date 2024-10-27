@@ -1,19 +1,6 @@
 extends layout
 
 block content
-  .f-container
-    .f-box
-      #f-led-left
-        each _ in Array(50)
-          .f-led__diode ⬤
-
-      .f-box__middle
-        .f-screen FIKMAT
-        .f-vibrate
-
-      #f-led-right
-        each _ in Array(50)
-          .f-led__diode ⬤
-
+  canvas(id='c' width='600' height='900')
 
   script(src='/javascripts/base.js')
