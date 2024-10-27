@@ -29,7 +29,7 @@ app.use(jsonErrorHandler);
 
 const rateLimit = require("express-rate-limit")
 const limiter = rateLimit({
-  windowMs: 1000 / 30,
+  windowMs: 1000 / 10,
   max: 1
 });
 app.use(limiter);
